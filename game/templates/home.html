@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Tic Tac</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2d2d2d;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #3e3e3e;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #f0f0f0;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #555;
+            color: white;
+        }
+
+        input:focus, select:focus {
+            outline: 2px solid #4CAF50;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* New styles for error messages */
+        .error-message {
+            background-color: #ff4444;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .error-message:empty {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>PLAY TIC TAC</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="error-message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form action="#" method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="Enter user name" name="username" required>
+            <select name="c" required>
+                <option value="" disabled selected>Choose Option</option>
+                <option value="1">Create Room</option>
+                <option value="2">Join Room</option>
+            </select>
+            <input type="text" name="code" placeholder="Enter Room Code" required>
+            <button type="submit">Start Game</button>
+        </form>
+    </div>
+</body>
+</html>
